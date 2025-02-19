@@ -3,6 +3,8 @@ import Img from "../img/img.png";
 import Attach from "../img/attach.png";
 import { LogInContext } from "../../../Context/LogInContext/Login";
 import { ChatContext } from "../../../Context/ChatContext";
+import { useNavigate } from "react-router-dom";
+import { Plane,Send} from "lucide-react";
 import {
   arrayUnion,
   doc,
@@ -17,6 +19,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 const Input = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
+  const navigate = useNavigate(); 
 
   const { user } = useContext(LogInContext);
   const { data } = useContext(ChatContext);
@@ -79,6 +82,7 @@ const Input = () => {
         type="text"
         placeholder="Type something..."
         onChange={(e) => setText(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && handleSend()}
         value={text}
       />
       <div className="send">
@@ -88,11 +92,20 @@ const Input = () => {
           style={{ display: "none" }}
           id="file"
           onChange={(e) => setImg(e.target.files[0])}
+
         />
         <label htmlFor="file">
           {/* <img src={Img} alt="" /> */}
         </label>
-        <button onClick={handleSend}>Send</button>
+        {data.chatId!=="null" &&(<button
+          className="bg-gray-500 text-white flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-600 transition whitespace-nowrap"
+          onClick={() => navigate("/all-trips")}
+        >
+          <Plane className="w-5 h-5"/>
+          Share Trip
+        </button>)}
+        {data.chatId!=="null" &&(<button  className="bg-gray-500 text-white flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-600 transition  whitespace-nowrap"
+        onClick={handleSend}><Send className="w-5 h-5"/>Send</button>)}
       </div>
     </div>
   );

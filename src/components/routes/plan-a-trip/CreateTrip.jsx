@@ -139,7 +139,7 @@ function CreateTrip({createTripPageRef}) {
         <p className="opacity-90 mx-auto text-center text-md md:text-xl font-medium tracking-tight text-primary/80">
           Embark on your dream adventure with just a few simple details. <br />
           <span className="bg-gradient-to-b text-2xl from-blue-400 to-blue-700 bg-clip-text text-center text-transparent">
-            TripAdvisor
+            TripPlanner
           </span>{" "}
           <br /> will curate a personalized itinerary, crafted to match your
           unique preferences!
@@ -291,8 +291,8 @@ function CreateTrip({createTripPageRef}) {
               <span className="flex gap-2">
                 <span className="text-center w-full opacity-90 mx-auto tracking-tight text-primary/80">
                   {user
-                    ? "Logged In Securely to TripAdvisor with Google Authentication"
-                    : "Sign In to TripAdvisor with Google Authentication Securely"}
+                    ? "Logged In Securely to TripPlanner with Google Authentication"
+                    : "Sign In to TripPlanner with Google Authentication Securely"}
                 </span>
               </span>
               {user ? (

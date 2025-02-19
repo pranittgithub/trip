@@ -1,6 +1,6 @@
 
 <div align="center">
-  <h1 align="center">TripAdvisor</h1 >
+  <h1 align="center">TripPlanner</h1 >
   <a href="https://trip-planner-by-satendra.vercel.app/" target="_blank">
     <img src="https://i.ibb.co/X7N17ps/main.png" style="border-radius: 10px;" alt="Logo" width="" height="250">
   </a>
@@ -42,13 +42,13 @@
 </div>
 </br>
 
-**TripAdvisor** is an AI-based travel planning application designed to make trip planning _easier and more efficient_. This project leverages artificial intelligence to analyze user preferences and provide personalized recommendations for destinations, accommodations, and activities.
+**TripPlanner** is an AI-based travel planning application designed to make trip planning _easier and more efficient_. This project leverages artificial intelligence to analyze user preferences and provide personalized recommendations for destinations, accommodations, and activities.
 
-Key features of TripAdvisor include:
+Key features of TripPlanner include:
 * **Personalized Recommendations**: The AI suggests ideal destinations, hotels, and activities tailored to the traveler’s preferences.
 * **Automated Itinerary Generation**: The app automatically creates a full itinerary that considers factors like travel time and user preferences.
 
-TripAdvisor aims to enhance the travel experience by providing a streamlined, easy-to-use platform for trip planning, designed for both casual travelers and frequent explorers alike.
+TripPlanner aims to enhance the travel experience by providing a streamlined, easy-to-use platform for trip planning, designed for both casual travelers and frequent explorers alike.
 
 
 
@@ -71,9 +71,9 @@ This project is built with the following major frameworks, libraries, and servic
 
 ## Getting Started
 
-Setting up TripAdvisor is simple — just configure your ```.env``` file, and you're ready to go!
+Setting up TripPlanner is simple — just configure your ```.env``` file, and you're ready to go!
 
-To get started with TripAdvisor, follow these instructions to set up the project locally on your machine for development and testing.
+To get started with TripPlanner, follow these instructions to set up the project locally on your machine for development and testing.
 
 ### Prerequisites
 
@@ -83,7 +83,7 @@ Before you begin, ensure you have the following installed:
 
 ### Services & API Keys Setup
 
-To fully integrate TripAdvisor with third-party services, you'll need to sign up for the following services, configure the required settings, and obtain API keys. Below are the steps for each service:
+To fully integrate TripPlanner with third-party services, you'll need to sign up for the following services, configure the required settings, and obtain API keys. Below are the steps for each service:
 
  
 <details>
