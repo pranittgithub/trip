@@ -5,7 +5,7 @@ import { LogInContext } from "@/Context/LogInContext/Login";
 import Marquee from "../ui/marquee";
 
 function Hero({ heroRef }) {
-  const { isAuthenticated } = useContext(LogInContext);
+  const { isAuthenticated,handleSignIn} = useContext(LogInContext);
   const images = [
     {
       name: "Chichen Itza",
@@ -98,7 +98,7 @@ function Hero({ heroRef }) {
           </h5>
         </div>
         <div className="buttons flex flex-col gap-3 md:flex-row">
-          <Link to="/plan-a-trip">
+          <Link to={isAuthenticated?"/plan-a-trip":"#" } onClick={handleSignIn}>
             <Button className="">
               {isAuthenticated
                 ? "Let's Make Another Trip"

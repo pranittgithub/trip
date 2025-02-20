@@ -32,7 +32,7 @@ const Chats = () => {
   }, [user.uid,user?.uid]);
 
   const handleSelect = (u) => {
-    dispatch({ type: "CHANGE_USER", payload: u });
+    dispatch({ type: "CHANGE_USER", payload: u });    
   };
 
   return (
@@ -43,7 +43,7 @@ const Chats = () => {
           key={chat[0]}
           onClick={() => handleSelect(chat[1].userInfo)}
         >
-          <img src={chat[1].userInfo.photoURL} alt="" />
+          <img src={chat[1].userInfo.photoURL} className="userimg h-full w-full object-cover overflow-hidden rounded-full" alt="" />
           <div className="userChatInfo">
             <span>{chat[1].userInfo.displayName}</span>
             <p>{chat[1].lastMessage?.text}</p>

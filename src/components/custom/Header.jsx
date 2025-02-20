@@ -65,7 +65,7 @@ function Header({ headerRef }) {
                 </h2>
                 <div className="userimg overflow-hidden h-10 w-10 rounded-full">
                   {user.photoURL ? (
-                    <img src={user.photoURL} alt={user.displayName} />
+                    <img src={user.photoURL} alt={user.displayName} className="h-full w-full object-cover"/>
                   ) : (
                     <User />
                   )}

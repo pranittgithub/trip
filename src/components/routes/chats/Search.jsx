@@ -79,6 +79,8 @@ const Search = () => {
           }, 
         },{merge:true},);
         console.log("done dana done");
+    console.log(user1.userPicture+"hello brother")
+
 
       }
     } catch (err) {}
@@ -101,7 +103,7 @@ const Search = () => {
       
       {user1 && (
         <div className="userChat" onClick={handleSelect}>
-          <img src={user1.userPicture} alt="" />
+          <img src={user1.userPicture} className="h-full w-full object-cover" alt="" />
           <div className="userChatInfo">
             <span>{user1.userName}</span>
           </div>
