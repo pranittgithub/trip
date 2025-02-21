@@ -12,25 +12,54 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../Service/firebase";
 import { LogInContext } from "../../../Context/LogInContext/Login";
-const Search = () => {
+const Search = ({chatType}) => {
   const [username, setUsername] = useState("");
   const [user1, setUser1] = useState(null);
+  const [searchResults, setSearchResults] = useState(null);
   const [err, setErr] = useState(false);
 
-   const {user, isAuthenticated, handleSignOut,handleSignIn } = useContext(LogInContext);
+   const {user } = useContext(LogInContext);
 
   const handleSearch = async () => {
-    const q = query(
-      collection(db, "Users"),
-      where("userName", "==", username)
-    );
+    
+    let q;
+    if (chatType === "user") {
+      q = query(
+        collection(db, "Users"),
+        where("userName", "==", username)
+      );
+    }else{
+      q = query(
+        collection(db, "groups"),
+        where("groupName", "==", username)
+      );
+    }
+    
 
     try {
       const querySnapshot = await getDocs(q);
+      let results = []
       querySnapshot.forEach((doc) => {
-        setUser1(doc.data());
+        if(chatType === "user"){
+          setUser1(doc.data());
+        }else{
+        results.push({ id: doc.id, ...doc.data() });
+        }
+        
       });
+      if (chatType === "group" &&results.length === 0) {
+        setErr(true);
+      } else {
+        if(chatType === "group"){
+          setSearchResults(results);
+        }
+
+       
+      }
+      // setUsername("");
+      
     } catch (err) {
+      console.log("helllo ji issue aa rah hai");
       setErr(true);
     }
   };
@@ -89,19 +118,21 @@ const Search = () => {
     setUsername("")
   };
   return (
+    <div>
     <div className="search">
       <div className="searchForm">
         <input
           type="text"
-          placeholder="Find a user"
+          placeholder={chatType === "user" ? "Find a user" : "Find a group"}
           onKeyDown={handleKey}
           onChange={(e) => setUsername(e.target.value)}
           value={username}
         />
       </div>
-      {err && <span>User not found!</span>}
+      {err&& chatType === "group" && <span>Group not found!</span>}
+      {err&& chatType === "user" && <span>User not found!</span>}
       
-      {user1 && (
+      {user1 && chatType === "user" && (
         <div className="userChat" onClick={handleSelect}>
           <img src={user1.userPicture} className="h-full w-full object-cover" alt="" />
           <div className="userChatInfo">
@@ -109,6 +140,25 @@ const Search = () => {
           </div>
         </div>
       )}
+      {searchResults && chatType === "group" &&
+        searchResults.map((item) => (
+          <div className="userChat" key={item.id}>
+            <img src={item.groupImage} className="h-full w-full object-cover" alt="" />
+            <div className="userChatInfo">
+              <span>{item.groupName}</span>
+            </div>
+          </div>
+        ))}
+      {/* {searchResults && chatType === "group" && (
+        <div className="userChat" onClick={handleSelect}>
+          <img src={user1.userPicture} className="h-full w-full object-cover" alt="" />
+          <div className="userChatInfo">
+            <span>{user1.userName}</span>
+          </div>
+        </div>
+      )} */}
+     
+    </div>
     </div>
   );
 };

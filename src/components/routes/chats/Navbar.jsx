@@ -8,6 +8,7 @@ const Navbar = () => {
    const { user, isAuthenticated, handleSignOut,handleSignIn } = useContext(LogInContext);
 
   return (
+    <div>
     <div className='navbar'>
       <span className="logo">Trip Chat</span>
       <div className="user">
@@ -15,6 +16,8 @@ const Navbar = () => {
         <span>{user.displayName}</span>
         {/* <button onClick={()=>signOut(auth)}>logout</button> */}
       </div>
+    </div>
+    
     </div>
   )
 }

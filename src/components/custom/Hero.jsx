@@ -6,6 +6,11 @@ import Marquee from "../ui/marquee";
 
 function Hero({ heroRef }) {
   const { isAuthenticated,handleSignIn} = useContext(LogInContext);
+  const handleLogin = (e) => {
+    if(!isAuthenticated){
+      handleSignIn();
+    }
+  }
   const images = [
     {
       name: "Chichen Itza",
@@ -98,7 +103,7 @@ function Hero({ heroRef }) {
           </h5>
         </div>
         <div className="buttons flex flex-col gap-3 md:flex-row">
-          <Link to={isAuthenticated?"/plan-a-trip":"#" } onClick={handleSignIn}>
+          <Link to={isAuthenticated?"/plan-a-trip":"#" } onClick={handleLogin}>
             <Button className="">
               {isAuthenticated
                 ? "Let's Make Another Trip"

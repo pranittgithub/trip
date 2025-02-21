@@ -108,29 +108,69 @@ function App() {
       <ProgressBar />
       <div className="app tracking-tighter min-w-[320px]">
         <Header headerRef={headerRef} />
-        <div className="container max-w-[1024px] w-full min-w-[320px] h-auto">
+        {/* <div className="container max-w-[1024px] w-full min-w-[320px] h-auto"> */}
+          {/* <div className="container max-w-[1024px] w-full min-w-[320px] h-auto"> */}
           <Routes>
-            <Route path="/" element={<Hero heroRef={heroRef} />} />
+            <Route
+              path="/"
+              element={
+                <div className="container max-w-[1024px] w-full min-w-[320px] h-auto">
+                  <Hero heroRef={heroRef} />
+                </div>
+              }
+            />
             <Route
               path="/plan-a-trip"
-              element={<CreateTrip createTripPageRef={createTripPageRef} />}
+              element={
+                <div className="container max-w-[1024px] w-full min-w-[320px] h-auto">
+                  <CreateTrip createTripPageRef={createTripPageRef} />
+                </div>
+              }
             />
             <Route
               path="/chat"
-              element={isAuthenticated ? <Chathome /> : <Hero />}
+              element={
+                isAuthenticated ? (
+                  <Chathome />
+                ) : (
+                  <div className="container max-w-[1024px] w-full min-w-[320px] h-auto">
+                    <Hero />
+                  </div>
+                )
+              }
             />
             <Route
               path="/my-trips/:tripId"
-              element={isAuthenticated ? <Mytrips /> : <Hero />}
+              element={
+                isAuthenticated ? (
+                  <div className="container max-w-[1024px] w-full min-w-[320px] h-auto">
+                    <Mytrips />
+                  </div>
+                ) : (
+                  <div className="container max-w-[1024px] w-full min-w-[320px] h-auto">
+                    <Hero />
+                  </div>
+                )
+              }
             />
             <Route
               path="/all-trips"
-              element={isAuthenticated ? <Alltrips /> : <Hero />}
+              element={
+                isAuthenticated ? (
+                  <div className="container max-w-[1024px] w-full min-w-[320px] h-auto">
+                    <Alltrips />
+                  </div>
+                ) : (
+                  <div className="container max-w-[1024px] w-full min-w-[320px] h-auto">
+                    <Hero />
+                  </div>
+                )
+              }
             />
           </Routes>
         </div>
         {/* <Footer footerRef={footerRef} /> */}
-      </div>
+      {/* </div> */}
     </>
   );
 }

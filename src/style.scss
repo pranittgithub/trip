@@ -25,7 +25,7 @@
   
   .home {
     // background-color: #a7bcff;
- background-color: var(--bg-color-light);  
+   background-color: var(--bg-color-light);  
    height: 650px;
     width: 100%;
     display: flex;
@@ -36,7 +36,7 @@
     //   border: 1px solid white;
       border-radius: 10px;
     //   width: 65%;
-      height: 80%;
+      height: 100%;
       display: flex;
       overflow: hidden;
       @include tablet {
@@ -90,6 +90,25 @@
             }
           }
         }
+        .modal {
+          border-bottom: 1px solid gray;
+  
+          .modalForm {
+            padding: 10px;
+  
+            input {
+              background-color: transparent;
+              border: none;
+              color: white;
+              outline: none;
+  
+              &::placeholder {
+                color: lightgray;
+              }
+            }
+          }
+        }
+
         .search {
           border-bottom: 1px solid gray;
   

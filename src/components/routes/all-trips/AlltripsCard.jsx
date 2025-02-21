@@ -42,7 +42,7 @@ const AlltripsCard = ({ trip }) => {
   }, [photos]);
 
   const shareTrip = async () => {
-    console.log(data.chatId + "Hello nigga");
+    console.log(data.chatId + "Hello ");
 
     if (!trip || !data.chatId) {
       console.log("No active chat selected!");
@@ -62,7 +62,7 @@ const AlltripsCard = ({ trip }) => {
     };
     try {
       // Save trip to Firestore chat messages
-      console.log(data.chatId + "Hello nigga");
+      console.log(data.chatId + "Hello");
       await updateDoc(doc(db, "chats", data.chatId), {
         messages: arrayUnion(tripMessage),
       });
