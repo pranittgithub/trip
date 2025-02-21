@@ -11,6 +11,7 @@ import {
   serverTimestamp,
   Timestamp,
   updateDoc,
+  getDoc,
 } from "firebase/firestore";
 import { db,storage } from "../../../Service/firebase";
 import { v4 as uuid } from "uuid";
@@ -25,10 +26,18 @@ const Input = () => {
   const { data } = useContext(ChatContext);
 
   const handleSend = async () => {
+    if (!text.trim() && !img) return;
+    const chatCollection = data.isGroupChat ? "groups" : "chats";
+    const chatRef = doc(db, chatCollection, data.chatId);
+    
     if (img) {
       const storageRef = ref(storage, uuid());
 
       const uploadTask = uploadBytesResumable(storageRef, img);
+
+
+
+
 
       uploadTask.on(
         (error) => {
@@ -36,7 +45,7 @@ const Input = () => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await updateDoc(doc(db, "chats", data.chatId), {
+            await updateDoc(chatRef, {
               messages: arrayUnion({
                 id: uuid(),
                 text,
@@ -49,29 +58,37 @@ const Input = () => {
         }
       );
     } else {
-      await updateDoc(doc(db, "chats", data.chatId), {
+
+
+      await updateDoc(chatRef, {
         messages: arrayUnion({
           id: uuid(),
           text,
           senderId: user.uid,
           date: Timestamp.now(),
+          senderpic:user.photoURL,
         }),
       });
     }
 
-    await updateDoc(doc(db, "userChats", user.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text,
-      },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
+    if(!data.isGroupChat){
+      await updateDoc(doc(db, "userChats", user.uid), {
+        [data.chatId + ".lastMessage"]: {
+          text,
+        },
+        [data.chatId + ".date"]: serverTimestamp(),
+      });
+  
+      await updateDoc(doc(db, "userChats", data.user.uid), {
+        [data.chatId + ".lastMessage"]: {
+          text,
+        },
+        [data.chatId + ".date"]: serverTimestamp(),
+      });
 
-    await updateDoc(doc(db, "userChats", data.user.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text,
-      },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
+    }
+
+    
 
     setText("");
     setImg(null);

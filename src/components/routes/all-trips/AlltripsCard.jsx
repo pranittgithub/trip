@@ -63,7 +63,8 @@ const AlltripsCard = ({ trip }) => {
     try {
       // Save trip to Firestore chat messages
       console.log(data.chatId + "Hello");
-      await updateDoc(doc(db, "chats", data.chatId), {
+      let chatCollection = data.isGroupChat ? "groups" : "chats";
+      await updateDoc(doc(db, chatCollection, data.chatId), {
         messages: arrayUnion(tripMessage),
       });
       console.log("Trip shared successfully!");
@@ -100,7 +101,7 @@ const AlltripsCard = ({ trip }) => {
             className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
             onClick={shareTrip}
           >
-            Share With {data.user.displayName}
+            Share With {data.isGroupChat ? data.user.groupName : data.user.displayName}
           </button>
         )}
       </div>

@@ -23,17 +23,20 @@ const Message = ({ message }) => {
   return (
     <div
       ref={ref}
-      className={`message ${message.senderId === user.uid && "owner"}`}
+      className={`message ${message.senderId === user.uid ? "owner" : ""}`}
     >
       <div className="messageInfo">
         <img
-          src={
+          src={data.isGroupChat? message.senderpic :
             message.senderId === user.uid
               ? user.photoURL
               : data.user.photoURL
           }
           alt=""
         />
+        {data.isGroupChat && message.senderName && (
+          <span className="text-sm font-semibold">{message.senderName}</span>
+        )}
         <span>{new Date(message.date?.seconds * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</span>
       </div>
 

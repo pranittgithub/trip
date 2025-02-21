@@ -12,6 +12,7 @@ export const ChatContextProvider = ({ children }) => {
   const { user } = useContext(LogInContext);
   const INITIAL_STATE = {
     chatId: "null",
+    isGroupChat: false,
     user: {},
   };
 
@@ -20,10 +21,17 @@ export const ChatContextProvider = ({ children }) => {
       case "CHANGE_USER":
         return {
           user: action.payload,
+          isGroupChat: false,
           chatId:
             user.uid > action.payload.uid
               ? user.uid + action.payload.uid
               : action.payload.uid + user.uid,
+        };
+        case "CHANGE_GROUP":
+        return {
+          isGroupChat: true,
+          chatId: action.payload.groupId, // groupId is used as chatId
+          user: action.payload, // Store group info
         };
 
       default:
