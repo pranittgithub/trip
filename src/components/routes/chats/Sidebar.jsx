@@ -8,6 +8,12 @@ import GroupChats from "./GroupChats";
 const Sidebar = () => {
   const [showGroupModal, setShowGroupModal] = useState(false);
   const [activeChatType, setActiveChatType] = useState("user");
+  const [refreshGroups, setRefreshGroups] = useState(false);
+  const handleGroupCreated = () => {
+    setShowGroupModal(false)
+    setRefreshGroups((prev) => !prev); // Toggle to trigger re-fetch
+  };
+  
   return (
     <div className="sidebar flex flex-col ">
       <Navbar />
@@ -33,10 +39,10 @@ const Sidebar = () => {
         Create Group
       </button>
       </div>}
-      {showGroupModal&& activeChatType === "group" && <CreateGroupModal onClose={() => setShowGroupModal(false)} />}
+      {showGroupModal&& activeChatType === "group" && <CreateGroupModal onClose={handleGroupCreated} />}
       
       {activeChatType === "user" && <Search chatType="user" />}
-      {activeChatType === "user" ? <Chats /> : <GroupChats />}
+      {activeChatType === "user" ? <Chats /> : <GroupChats refreshGroups={refreshGroups} />}
       </div>
     </div>
   );

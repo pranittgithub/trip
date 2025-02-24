@@ -83,6 +83,7 @@ const CreateGroupModal = ({ onClose }) => {
       );
       alert("Group Created!");
       onClose();
+      onGroupCreated();
       // window.location.reload();
     } catch (error) {
       console.error("Error creating group:", error);

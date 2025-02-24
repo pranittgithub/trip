@@ -5,7 +5,7 @@ import { LogInContext } from "../../../Context/LogInContext/Login";
 import { ChatContext } from "../../../Context/ChatContext";
 
 
-const GroupChats = () => {
+const GroupChats = ({refreshGroups}) => {
   const { user } = useContext(LogInContext);
   const { dispatch } = useContext(ChatContext);
   const [groups, setGroups] = useState([]);
@@ -13,7 +13,6 @@ const GroupChats = () => {
   const [groupMembers, setGroupMembers] = useState({});
   const [groupAdmins, setGroupAdmins] = useState({});
   const [selectedGroup, setSelectedGroup] = useState(null);
-  
   useEffect(() => {
     if (!user) return;
     const fetchGroups = async () => {
@@ -61,7 +60,7 @@ const GroupChats = () => {
       }
     };
     fetchGroups();
-  }, [user]);
+  }, [user,refreshGroups]);
 
   const handleSelectGroup = (group) => {
     dispatch({
