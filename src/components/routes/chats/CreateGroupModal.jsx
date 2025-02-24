@@ -58,7 +58,7 @@ const CreateGroupModal = ({ onClose }) => {
     const groupId = Date.now().toString(); // Unique ID
     const adminData = {
       uid: user.uid,
-      displayName: user.displayName,
+      userName: user.displayName,
       userEmail: user.email,
       userPicture: user.photoURL,
     };
@@ -83,6 +83,7 @@ const CreateGroupModal = ({ onClose }) => {
       );
       alert("Group Created!");
       onClose();
+      // window.location.reload();
     } catch (error) {
       console.error("Error creating group:", error);
     }

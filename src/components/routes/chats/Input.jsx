@@ -70,6 +70,7 @@ const Input = () => {
         }),
       });
     }
+    
 
     if(!data.isGroupChat){
       await updateDoc(doc(db, "userChats", user.uid), {
@@ -86,6 +87,15 @@ const Input = () => {
         [data.chatId + ".date"]: serverTimestamp(),
       });
 
+    }else{
+      const lastMessageUpdate = {
+        lastMsgTxt: text,
+        sentBy: user.displayName, // Sender's name
+        time: serverTimestamp(),
+      };
+      await updateDoc(chatRef, {
+        lastMessage: lastMessageUpdate,
+      });
     }
 
     

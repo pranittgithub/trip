@@ -33,6 +33,7 @@ export const ChatContextProvider = ({ children }) => {
           chatId: action.payload.groupId, // groupId is used as chatId
           user: action.payload, // Store group info
         };
+        
 
       default:
         return state;
