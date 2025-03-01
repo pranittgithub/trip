@@ -52,7 +52,7 @@ function CreateTrip({createTripPageRef}) {
       userEmail: user?.email,
       userPicture: user?.photoURL,
       uid: user?.uid,
-    });
+    }, { merge: true });
   };
 
   useEffect(() => {
