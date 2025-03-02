@@ -10,7 +10,7 @@ import {
   arrayUnion,
   serverTimestamp,
 } from "firebase/firestore";
-import { db } from "../../../Service/firebase";
+import { db } from "../../../Service/Firebase";
 import { LogInContext } from "../../../Context/LogInContext/Login";
 import { Plus, Minus } from "lucide-react";
 

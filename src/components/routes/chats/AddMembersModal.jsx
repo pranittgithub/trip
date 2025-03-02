@@ -8,7 +8,7 @@ import {
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
-import { db } from "../../../Service/firebase";
+import { db } from "../../../Service/Firebase";
 import { Plus } from "lucide-react";
 
 const AddMembersModal = ({ group, onClose }) => {

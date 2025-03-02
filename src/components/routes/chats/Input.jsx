@@ -13,7 +13,7 @@ import {
   updateDoc,
   getDoc,
 } from "firebase/firestore";
-import { db,storage } from "../../../Service/firebase";
+import { db,storage } from "../../../Service/Firebase";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 

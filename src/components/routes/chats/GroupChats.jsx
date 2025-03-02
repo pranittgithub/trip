@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { collection, doc, getDoc } from "firebase/firestore";
-import { db } from "../../../Service/firebase";
+import { db } from "../../../Service/Firebase";
 import { LogInContext } from "../../../Context/LogInContext/Login";
 import { ChatContext } from "../../../Context/ChatContext";
 

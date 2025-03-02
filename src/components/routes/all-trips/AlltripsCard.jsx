@@ -4,7 +4,7 @@ import { ChatContext } from "../../../Context/ChatContext"; // Import Chat Conte
 import { LogInContext } from "../../../Context/LogInContext/Login"; // Import User Context
 import { v4 as uuid } from "uuid";
 import { arrayUnion, doc, updateDoc, Timestamp } from "firebase/firestore";
-import { db } from "@/Service/firebase";
+import { db } from "@/Service/Firebase";
 import { useNavigate } from "react-router-dom";
 
 const AlltripsCard = ({ trip }) => {
