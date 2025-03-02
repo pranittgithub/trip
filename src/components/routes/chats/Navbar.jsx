@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import {signOut} from "firebase/auth"
-import { auth } from '../../../Service/firebase'
+import { auth } from '../../../Service/Firebase'
 import { LogInContext } from '../../../Context/LogInContext/Login';
 
 
